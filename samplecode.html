@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-cover bg-center bg-no-repeat" style="background-image: url('./IMG.JPG')">
+
+<nav class="bg-yellow-500 p-4">
+    <button class="navbar-toggler" type="button" onclick="toggleFeatures()">
+        <span class="line bg-white"></span>
+        <span class="line bg-white"></span>
+        <span class="line bg-white"></span>
+    </button>
+    <div class="container mx-auto">
+        <div id="features" class="hidden md:flex md:col-span-3 md:dropdown-content md:dropdown-column">
+            <a class="dropdown-item" href="./stock.html">1. Add a new lot</a>
+            <a class="dropdown-item" href="./checkstock.html">2. Check my stock</a>
+            <a class="dropdown-item" href="./bill.html">3. Billing system</a>
+            <a class="dropdown-item" href="./expiry.html">4. Expiry Check</a>
+            <a class="dropdown-item" href="./logout.html">5. Logout</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleFeatures() {
+        var dropdown = document.getElementById("features");
+        var computedStyle = window.getComputedStyle(dropdown);
+        if (computedStyle.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    // Close dropdown column when clicking outside
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById("features");
+        var toggler = document.querySelector(".navbar-toggler");
+        if (!dropdown.contains(event.target) && event.target !== toggler) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+            
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("./IMG.JPG");
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+
+        .navbar {
+            padding: 20px 0; /* Increase top and bottom padding */
+            height: 80px; /* Increase overall height */
+            background-color: #FEAA00 !important; /* Blue color */
+        }
+
+        .navbar-toggler {
+            position: absolute;
+            left: 15px;
+            top: 10px; /* Adjust top position */
+            width: 50px; /* Increase the width of the toggle button */
+            height: 50px; /* Increase the height of the toggle button */
+            padding: 10px; /* Add padding to increase clickable area */
+            background-color: white; /* Transparent background */
+            border: none; /* No border */
+            transition: box-shadow 0.3s; /* Add transition for box-shadow */
+        }
+
+        .navbar-toggler:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+        }
+
+        .navbar-toggler .line {
+            width: 20px;
+            height: 3px; /* Increase thickness of the lines */
+            background-color: #007bff !important; /* Blue color */
+            margin: 4px 0;
+        }
+
+        .navbar-toggler .line:nth-child(1),
+        .navbar-toggler .line:nth-child(2),
+        .navbar-toggler .line:nth-child(3) {
+            background-color: #fff !important; /* White color for the lines */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(129, 219, 87, 0.9); /* Light blue color */
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+            height: 100vh; /* Set height to match viewport height */
+            overflow-y: auto; /* Add scroll if content exceeds viewport */
+            transition: all 0.5s linear;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #20a05e;
+        }
+
+        @media (max-width: 767.98px) {
+            .dropdown-content {
+                display: block; /* Always show on small screens */
+                position: fixed; /* Fixed positioning on small screens */
+                top: 56px; 
+                left: 0;
+                right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" onclick="toggleFeatures()">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+    </button>
+    <div class="container">
+        <div id="features" class="col-md-3 dropdown-content dropdown-column">
+            <a class="dropdown-item" href="./stock.html">1. Add a new lot</a>
+            <a class="dropdown-item" href="./checkstock.html">2. Check my stock</a>
+            <a class="dropdown-item" href="./bill.html">3. Billing system</a>
+            <a class="dropdown-item" href="./expiry.html">4. Expiry Check</a>
+            <a class="dropdown-item" href="./logout.html">5. Logout</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleFeatures() {
+        var dropdown = document.getElementById("features");
+        var computedStyle = window.getComputedStyle(dropdown);
+        if (computedStyle.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+    // Close dropdown column when clicking outside
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById("features");
+        var toggler = document.querySelector(".navbar-toggler");
+        if (!dropdown.contains(event.target) && event.target !== toggler) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

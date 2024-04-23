@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-size: cover;
+            background-position: center;
+            background-image: url('./IMG_2412.JPG');
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Position relative for overlay */
+        }
+
+        /* Overlay styling */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 80%, rgba(0,0,0,0.4) 100%);
+            z-index: 2; /* Ensure it's above the background image */
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            position: relative; /* Ensure z-index works */
+            z-index: 3; /* Higher z-index to keep it above the overlay */
+        }
+
+        .login-header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 0;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .login-button {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .sign-up-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .required::before {
+            content: "* ";
+            color: red;
+        }
+
+        .required-text {
+            color: red;
+        }
+
+        /* Additional buttons */
+        .additional-buttons {
+            text-align: center;
+            margin-top: 30px;
+            position: relative; /* Ensure z-index works */
+            z-index: 3; /* Higher z-index to keep it above the overlay */
+        }
+
+        .additional-buttons a {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <div class="login-container">
+        <div class="login-header">Log in</div>
+        <form id="loginForm" action="#" method="post">
+            <div class="form-group">
+                <label for="username" class="required">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password" class="required">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required class="form-control">
+            </div>
+            <button type="submit" class="login-button btn btn-primary btn-block">Log in</button>
+        </form>
+        <p class="sign-up-link">Don't Have an Account? <a href="signup.html">Sign Up</a></p>
+        <p class="required-text">* Marked fields are mandatory</p>
+    </div>
+
+    <!-- Additional buttons -->
+    <div class="additional-buttons">
+        <a href="./about.html">About</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./contact.html">Contact</a>
+    </div>
+
+    <script>
+        // Add event listener for form submission
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // Retrieve username and password from the form
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if username and password are correct (you would do actual validation here)
+            // For demonstration, let's assume valid username/password is "admin"/"password123"
+            if (username === "admin" && password === "12345") {
+                // Redirect to the dashboard or any other page upon successful login
+                window.location.href = "./interface.html";
+            } else {
+                // If username/password is incorrect, display an alert with an error message
+                alert("Invalid username or password");
+            }
+        });
+    </script>
+</body>
+</html>

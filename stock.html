@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Stock Enrollment</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .background-container {
+            background-image: url("./IMG_2419.JPG"); /* Replace 'IMG.JPG' with your image path */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Adjust background color opacity as needed */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3); /* Add shadow for better contrast */
+            max-width: 500px; /* Limit container width for better readability */
+        }
+
+        .success-message {
+            display: none; /* Initially hide success message */
+            color: green; /* Customize message color */
+        }
+
+        .error-message {
+            color: red; /* Customize error message color */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        <div class="container mt-5">
+            <h1 class="text-center mb-5">New Stock Enrollment</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="enrollment-form" action="enrollsucess.html" method="post" onsubmit="return validateForm();"> <!-- Updated action attribute -->
+                        <div class="form-group">
+                            <label for="productName">Product Name:</label>
+                            <input type="text" class="form-control" id="productName" name="productName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price (per unit):</label>
+                            <input type="number" class="form-control" id="price" name="price" min="0.01" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mfg">Manufacture Date:</label>
+                            <input type="date" class="form-control" id="mfg" name="mfg" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exp">Expiry Date:</label>
+                            <input type="date" class="form-control" id="exp" name="exp" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="limitingQuantity">Limiting Quantity:</label>
+                            <input type="number" class="form-control" id="limitingQuantity" name="limitingQuantity" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="stock-button">Stock</button>
+                        <p class="error-message" id="error-message">Please fill in all fields!</p> <!-- Error message -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function validateForm() {
+            var productName = document.getElementById('productName').value;
+            var price = document.getElementById('price').value;
+            var mfg = document.getElementById('mfg').value;
+            var exp = document.getElementById('exp').value;
+            var limitingQuantity = document.getElementById('limitingQuantity').value;
+            var quantity = document.getElementById('quantity').value;
+
+            // Check if any field is empty
+            if (productName === '' || price === '' || mfg === '' || exp === '' || limitingQuantity === '' || quantity === '') {
+                document.getElementById('error-message').style.display = 'block'; // Show error message
+                return false; // Prevent form submission
+            }
+
+            // Hide error message if all fields are filled
+            document.getElementById('error-message').style.display = 'none';
+
+            // Code to enroll stock (can be AJAX call to server)
+
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>

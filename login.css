@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Set the font color to contrast with the background image */
+}
+
+.background-container {
+    background-image: url('./IMG_2393.JPG');
+    background-size: cover;
+    width: 100%; /* Ensure the container takes up the full width */
+    height: 100vh; /* Set the height to fill the viewport */
+    display: flex; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    height: auto; /* Remove fixed height */
+    width: 300px; /* Add a specific width to the login container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    margin: auto; /* Center container horizontally */
+}
+
+.login-button {
+    width: 100%; /* Make the button width 100% to fill the container */
+}
+.links {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+
+
+.login-container label {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center; /* Center align the caption */
+}
+
+
+.login-container label[for="username"],
+.login-container label[for="password"] {
+    text-align: center; /* Center align the caption */
+}

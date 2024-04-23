@@ -1,0 +1,17 @@
+.background-container {
+    background-image: url('./IMG_2357.JPG'); /* Replace 'background-image.jpg' with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust background color opacity as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3); /* Add shadow for better contrast */
+    max-width: 500px; /* Limit container width for better readability */
+}

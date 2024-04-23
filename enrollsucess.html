@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Enrollment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .confirmation-message {
+            margin-bottom: 20px;
+            text-decoration: underline;
+        }
+
+        .confirm-button, .enroll-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-button:hover, .enroll-button:hover {
+            background-color: #0056b3;
+        }
+
+        .success-message {
+            margin-top: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Enrollment</h1>
+        <p class="confirmation-message">Are you sure you want to enroll this stock?</p>
+        <button class="confirm-button">Yes, Enroll</button>
+        <div id="success-message" class="success-message">
+            <p>Stock has been enrolled!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var confirmButton = document.querySelector('.confirm-button');
+            var successMessage = document.getElementById('success-message');
+
+            confirmButton.addEventListener('click', function() {
+                // Perform any necessary actions (e.g., AJAX call to enroll the stock)
+                // For demonstration purposes, simply show the success message
+                successMessage.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

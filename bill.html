@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional custom styles */
+        body {
+            position: relative;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("./IMG_2427.JPG");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            z-index: 0;
+        }
+
+        .billing-container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-list {
+            margin-bottom: 20px;
+        }
+
+        .btn-take-bill {
+            background-color: #f8f9fa;
+            color: #000;
+            border: 1px solid #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="billing-container">
+        <h2 class="product-list">Product List</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Product 1</td>
+                    <td>$10</td>
+                    <td><button class="btn btn-primary">Add to Cart</button></td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Product 2</td>
+                    <td>$20</td>
+                    <td><button class="btn btn-primary">Add to Cart</button></td>
+                </tr>
+                <!-- Add more rows for additional products -->
+            </tbody>
+        </table>
+        <button class="btn btn-take-bill"><a href="./billprint.html">Take Bill</a></button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

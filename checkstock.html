@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Checker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('./IMG_2418.JPG'); /* Replace 'background.jpg' with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            z-index: 2; /* Ensure the container appears above the overlay */
+        }
+
+        .rounded-3 {
+            border-radius: 0.5rem;
+        }
+
+        .shadow {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .p-4 {
+            padding: 1.5rem;
+        }
+
+        .bg-white {
+            background-color: #fff;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            width: 300px; /* Adjust the width as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="rounded-3 shadow p-4 bg-white">
+            <h1 class="mb-4">Check Stock</h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="product-name" placeholder="Enter product name">
+                <button class="btn btn-primary ms-2" type="button" onclick="checkStock()">Check</button>
+                <button class="btn btn-danger ms-2" type="button" onclick="clearInput()">Clear</button>
+            </div>
+            <div id="stock-result"></div>
+        </div>
+    </div>
+
+    <script>
+        var stockResult = document.getElementById("stock-result");
+
+        function checkStock() {
+            var productName = document.getElementById("product-name").value.trim();
+
+            if (productName === "") {
+                stockResult.textContent = "Please enter a product name.";
+            } else {
+                stockResult.textContent = "Remaining stock for " + productName + ": 15 units";
+            }
+        }
+
+        function clearInput() {
+            document.getElementById("product-name").value = ""; // Clear the input field
+            stockResult.textContent = ""; // Clear the stock result
+        }
+    </script>
+</body>
+</html>
