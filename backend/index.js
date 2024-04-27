@@ -31,11 +31,26 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+// Define a GET endpoint to check the number of units of a particular stock by its name
+app.get('/stock/:name/units', async (req, res) => {
+  try {
+      const productName = req.params.name;
+      const product = await Product.findOne({ name: productName });
+      if (!product) {
+          return res.status(404).json({ message: 'Product not found' });
+      }
+      res.json({ units: product.quantity });
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
+});
 
 
-app.get('/:id/expiry', async (req, res) => {
+
+app.get('/stock/:name/expiry', async (req, res) => {
     try {
-      const product = await Product.findById(req.params.id);
+      const productName = req.params.name;
+      const product = await Product.findOne({name: productName});
       if (!product) {
         return res.status(404).json({ message: 'Product not found' });
       }
@@ -43,7 +58,7 @@ app.get('/:id/expiry', async (req, res) => {
       const expiryDate = new Date(product.expiryDate);
       if (expiryDate < today) {
         return res.json({ expired: true });
-      } else {
+      } else { 
         return res.json({ expired: false });
       }
     } catch (err) {

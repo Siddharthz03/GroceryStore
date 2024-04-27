@@ -42,7 +42,7 @@
             <h1 class="text-center mb-5">New Stock Enrollment</h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form id="enrollment-form" action="enroll.php" method="post" onsubmit="return validateForm();"> <!-- Updated action attribute -->
+                    <form id="enrollment-form" action="" method="" onsubmit=""> <!-- Updated action attribute -->
                         <div class="form-group">
                             <label for="productName">Product Name:</label>
                             <input type="text" class="form-control" id="productName" name="productName" required>
@@ -64,11 +64,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="limitingQuantity">Limiting Quantity:</label>
-                            <input type="number" class="form-control" id="limitingQuantity" name="limitingQuantity" min="1" required>
-                        </div>
-
-                        <div class="form-group">
                             <label for="quantity">Quantity:</label>
                             <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
                         </div>
@@ -85,33 +80,61 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- HTML content -->
+<script>
 
-    <script>
-        function validateForm() {
-            var productName = document.getElementById('productName').value;
-            var price = document.getElementById('price').value;
-            var mfg = document.getElementById('mfg').value;
-            var exp = document.getElementById('exp').value;
-            var limitingQuantity = document.getElementById('limitingQuantity').value;
-            var quantity = document.getElementById('quantity').value;
-    
-            // Check if any field is empty
-            if (productName === '' || price === '' || mfg === '' || exp === '' || limitingQuantity === '' || quantity === '') {
-                document.getElementById('error-message').style.display = 'block'; // Show error message
-                return false; // Prevent form submission
-            }
-    
-            // Hide error message if all fields are filled
-            document.getElementById('error-message').style.display = 'none';
-    
-            // Code to enroll stock (can be AJAX call to server)
-    
-            // Redirect to success page
-            window.location.href = 'enrollsuccess.html';
-    
+    document.getElementById('enrollment-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        var productName = document.getElementById('prod')
+        var productName = document.getElementById('productName').value;
+        var price = document.getElementById('price').value;
+        var mfg = document.getElementById('mfg').value;
+        var exp = document.getElementById('exp').value;
+
+        var quantity = document.getElementById('quantity').value;
+
+        // Check if any field is empty
+        if (productName === '' || price === '' || mfg === '' || exp === '' || quantity === '') {
+            document.getElementById('error-message').style.display = 'block'; // Show error message
             return false; // Prevent form submission
         }
-    </script>
+
+        // Hide error message if all fields are filled
+        document.getElementById('error-message').style.display = 'none';
+        
+        
+        try {
+            const response = await fetch('http://localhost:3005/createproduct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: productName,
+                    price: parseFloat(price),
+                    manufactureDate: mfg,
+                    expiryDate: exp,
+                    quantity: parseInt(quantity)
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('An error occurred while submitting the form.');
+            }
+
+            // Product created successfully
+            window.location.href = 'enrollsuccess.html'; // Redirect to success page
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred. Please try again later.'); // Show error message
+        }
+
+        return false; // Prevent form submission
+    });
+</script>
+
+<!-- Remaining HTML content -->
     
     
 </body>

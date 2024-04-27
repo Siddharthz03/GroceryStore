@@ -36,44 +36,76 @@
 </head>
 <body>
     <iframe src="navbar.html" frameborder="0" width="100%" height="80px"></iframe>
-
-<div class="container">
-    <h2>Expiry List</h2>
-    <div class="form-group">
-        <label for="expiry-range">Select Expiry Range:</label>
-        <select class="form-control" id="expiry-range">
-            <option value="15">15 days</option>
-            <option value="30">1 month</option>
-            <option value="60">2 months</option>
-            <option value="180">6 months</option>
-        </select>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="rounded-3 shadow p-4 bg-white">
+            <h1 class="mb-4">Check Expiry : </h1>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="product-name" placeholder="Enter product name">
+                <button class="btn btn-primary ms-2" type="button" onclick="checkExpiry()">Check</button>
+                <button class="btn btn-danger ms-2" type="button" onclick="clearInput()">Clear</button>
+            </div>
+            <div id="stock-result"></div>
+        </div>
     </div>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Expiry Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Product 1</td>
-                <td>2024-04-15</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Product 2</td>
-                <td>2024-04-20</td>
-            </tr>
-            <!-- Add more rows for additional products -->
-        </tbody>
-    </table>
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    var stockResult = document.getElementById("stock-result");
+
+    function checkStock() {
+        var productName = document.getElementById("product-name").value.trim();
+        
+        if (productName === "") {
+            stockResult.textContent = "Please enter a product name.";
+        } else {
+            stockResult.textContent = "Remaining stock for " + productName + ": 15 units";
+        }
+    }
+
+    function clearInput() {
+        document.getElementById("product-name").value = ""; // Clear the input field
+        stockResult.textContent = ""; // Clear the stock result
+    }
+    
+    function checkExpiry() {
+var productName = document.getElementById("product-name").value.trim();
+
+if (productName === "") {
+    stockResult.textContent = "Please enter a product name.";
+} else {
+    fetch('http://localhost:3005/stock/' + encodeURIComponent(productName) + '/expiry', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Product not found ');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // stockResult.textContent = "Expiry for " + productName + ": " + data.expired;
+        stockResult.textContent = data.expired ? 'Product expired': 'Product not expired';
+    })
+    .catch(error => {
+        stockResult.textContent = "Error: " + error.message;
+    });
+}
+}
+
+function clearInput() {
+    document.getElementById("product-name").value = ""; // Clear the input field
+    stockResult.textContent = ""; // Clear the stock result
+}
+
+
+</script>
+
 </body>
 </html>
