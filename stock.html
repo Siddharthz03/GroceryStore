@@ -36,12 +36,13 @@
     </style>
 </head>
 <body>
+    <iframe src="navbar.html" frameborder="0" width="100%" height="80px"></iframe>
     <div class="background-container">
         <div class="container mt-5">
             <h1 class="text-center mb-5">New Stock Enrollment</h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form id="enrollment-form" action="enrollsucess.html" method="post" onsubmit="return validateForm();"> <!-- Updated action attribute -->
+                    <form id="enrollment-form" action="enroll.php" method="post" onsubmit="return validateForm();"> <!-- Updated action attribute -->
                         <div class="form-group">
                             <label for="productName">Product Name:</label>
                             <input type="text" class="form-control" id="productName" name="productName" required>
@@ -93,20 +94,25 @@
             var exp = document.getElementById('exp').value;
             var limitingQuantity = document.getElementById('limitingQuantity').value;
             var quantity = document.getElementById('quantity').value;
-
+    
             // Check if any field is empty
             if (productName === '' || price === '' || mfg === '' || exp === '' || limitingQuantity === '' || quantity === '') {
                 document.getElementById('error-message').style.display = 'block'; // Show error message
                 return false; // Prevent form submission
             }
-
+    
             // Hide error message if all fields are filled
             document.getElementById('error-message').style.display = 'none';
-
+    
             // Code to enroll stock (can be AJAX call to server)
-
-            return true; // Allow form submission
+    
+            // Redirect to success page
+            window.location.href = 'enrollsuccess.html';
+    
+            return false; // Prevent form submission
         }
     </script>
+    
+    
 </body>
 </html>

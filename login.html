@@ -91,13 +91,31 @@
         .additional-buttons {
             text-align: center;
             margin-top: 30px;
-            position: relative; /* Ensure z-index works */
-            z-index: 3; /* Higher z-index to keep it above the overlay */
+            z-index: 5;
         }
 
         .additional-buttons a {
             margin: 0 10px;
+            z-index: 5;
         }
+
+        /* Footer styling */
+        .footer {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5; /* Increased z-index value */
+    margin: -1px;
+}
+
+.footer span {
+    color: #007bff; /* Blue color for text */
+}
+
+
+
     </style>
 </head>
 <body>
@@ -106,7 +124,7 @@
 
     <div class="login-container">
         <div class="login-header">Log in</div>
-        <form id="loginForm" action="#" method="post">
+        <form id="loginForm" action="mongodb://localhost:27017" method="post">
             <div class="form-group">
                 <label for="username" class="required">Username</label>
                 <input type="text" id="username" name="username" placeholder="Username" required class="form-control">
@@ -117,7 +135,7 @@
             </div>
             <button type="submit" class="login-button btn btn-primary btn-block">Log in</button>
         </form>
-        <p class="sign-up-link">Don't Have an Account? <a href="signup.html">Sign Up</a></p>
+        <p class="sign-up-link">Don't Have an Account? <a href="register.html">Sign Up</a></p>
         <p class="required-text">* Marked fields are mandatory</p>
     </div>
 
@@ -128,6 +146,14 @@
         <a href="./contact.html">Contact</a>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <span class="text-muted">© 2024 All Rights Reserved</span>
+        </div>
+    </footer>
+
+    <!-- Your scripts here -->
     <script>
         // Add event listener for form submission
         document.getElementById("loginForm").addEventListener("submit", function(event) {

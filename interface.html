@@ -4,138 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navigation Bar</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            
-            
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background-image: url("./IMG.JPG");
-            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            background-image: url('./Arctic colour bg.png'); /* Change 'your-background-image.jpg' to your image URL */
             background-size: cover;
-            
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative; /* Ensure relative positioning for the overlay */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(61, 59, 59, 0.8) 0%, rgba(0,0,0,0) 100%);
+            pointer-events: none; /* Prevent overlay from blocking clicks */
+            z-index: 1; /* Ensure overlay is above the tiles */
         }
 
         .navbar {
-            padding: 20px 0; /* Increase top and bottom padding */
-            height: 80px; /* Increase overall height */
-            background-color: #FEAA00 !important; /* Blue color */
+            padding: 20px 0;
+            background-color: #0Fa4af !important; /* Keep the navbar color as provided initially */
+            position: relative; /* Ensure relative positioning for z-index to work */
+            z-index: 2; /* Ensure navbar is above overlay */
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
         }
 
         .navbar-toggler {
-            position: absolute;
-            left: 15px;
-            top: 10px; /* Adjust top position */
-            width: 50px; /* Increase the width of the toggle button */
-            height: 50px; /* Increase the height of the toggle button */
-            padding: 10px; /* Add padding to increase clickable area */
-            background-color: white; /* Transparent background */
-            border: none; /* No border */
-            transition: box-shadow 0.3s; /* Add transition for box-shadow */
+            border-color: #fff;
         }
 
-        .navbar-toggler:hover {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+        .navbar-toggler-icon {
+            background-color: #fff;
         }
 
-        .navbar-toggler .line {
-            width: 20px;
-            height: 3px; /* Increase thickness of the lines */
-            background-color: #007bff !important; /* Blue color */
-            margin: 4px 0;
+        .tile-container {
+            position: relative; /* Ensure relative positioning for z-index to work */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Center vertically */
+            height: calc(100vh - 80px); /* Adjust height to center vertically */
+            padding-top: 20px;
+            z-index: 2; /* Ensure tiles are above overlay */
         }
 
-        .navbar-toggler .line:nth-child(1),
-        .navbar-toggler .line:nth-child(2),
-        .navbar-toggler .line:nth-child(3) {
-            background-color: #fff !important; /* White color for the lines */
+        .tile {
+            background-color: #82CAFF;
+            padding: 20px;
+            margin: 10px;
+            width: calc(100% - 20px); /* Adjust width to fit 3 tiles in a row */
+            text-align: center;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out; /* Add smooth transition */
+            height: 150px; /* Set the height of the tile */
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
         }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: rgba(129, 219, 87, 0.9); /* Light blue color */
-            min-width: 160px;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            z-index: 1;
-            height: 100vh; /* Set height to match viewport height */
-            overflow-y: auto; /* Add scroll if content exceeds viewport */
-            transition: all 0.5s linear;
+        .tile.red {
+            background-color: #964734; /* Keep the background color as red */
         }
 
-        .dropdown-content a {
+        .tile.yellow {
+            background-color: #1de9b6; /* Change the background color for yellow tiles */
+        }
+
+        .tile a {
             color: #fff;
-            padding: 12px 16px;
             text-decoration: none;
-            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex; /* Center align the text */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            width: 100%; /* Fill the entire tile horizontally */
+            height: 100%; /* Fill the entire tile vertically */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow */
         }
 
-        .dropdown-content a:hover {
-            background-color: #20a05e;
+        .tile:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            background-color: #1a5b61;
         }
 
-        @media (max-width: 767.98px) {
-            .dropdown-content {
-                display: block; /* Always show on small screens */
-                position: fixed; /* Fixed positioning on small screens */
-                top: 56px; 
-                left: 0;
-                right: 0;
-            }
+        /* Change search button color and font color on hover */
+        .btn-outline-success:hover {
+            background-color: #fff;
+            color: #0Fa4af;
         }
+
+        /* Change font color of search input on hover */
+        .form-control:hover {
+            color: #fff;
+        }
+
+        /* Change search button color */
+        .btn-outline-success {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            z-index: 3; /* Ensure footer is above overlay */
+        }
+
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" onclick="toggleFeatures()">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-    </button>
-    <div class="container">
-        <div id="features" class="col-md-3 dropdown-content dropdown-column">
-            <a class="dropdown-item" href="./stock.html">1. Add a new lot</a>
-            <a class="dropdown-item" href="./checkstock.html">2. Check my stock</a>
-            <a class="dropdown-item" href="./bill.html">3. Billing system</a>
-            <a class="dropdown-item" href="./expiry.html">4. Expiry Check</a>
-            <a class="dropdown-item" href="./logout.html">5. Logout</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Welcome </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./privacy.html">Privacy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Me</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overlay"></div>
+
+    <div class="container tile-container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="tile red"> <!-- Keep the red class here -->
+                    <a href="./stock.html">Add a new lot</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tile red"> <!-- Add the yellow class here -->
+                    <a href="./checkstock.html">Check my stock</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tile red"> <!-- Add the yellow class here -->
+                    <a href="./khaata.html">Khaata section</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tile red">
+                    <a href="./bill.html">Billing system</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tile red">
+                    <a href="./expiry.html">Expiry Check</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tile red">
+                    <a href="./logout.html">Logout</a>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
 
-<script>
-    function toggleFeatures() {
-        var dropdown = document.getElementById("features");
-        var computedStyle = window.getComputedStyle(dropdown);
-        if (computedStyle.display === "block") {
-            dropdown.style.display = "none";
-        } else {
-            dropdown.style.display = "block";
-        }
-    }
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright © 2024 Grocery Store. All rights reserved.</p>
+        </div>
+    </footer>
 
-    // Close dropdown column when clicking outside
-    document.addEventListener('click', function(event) {
-        var dropdown = document.getElementById("features");
-        var toggler = document.querySelector(".navbar-toggler");
-        if (!dropdown.contains(event.target) && event.target !== toggler) {
-            dropdown.style.display = "none";
-        }
-    });
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

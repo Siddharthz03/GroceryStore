@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #343a40 !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center; /* Align center */
+            width: 100%; /* Make the brand text take the full width */
+        }
+
+        .container {
+            padding-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .table {
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color:#343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Custom button style */
+        .send-alert-btn {
+            margin-right: 5px; /* Add margin between buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Grocery Store</a>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="container">
+        <h1 class="mt-5 mb-4">Customer Accounts</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Contact Name</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Pending Amount(Rs)</th>
+                    <th>Paid Amount(Rs)</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Alert</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Vamika  Nimbalkar </td>
+                    <td>9827362800</td>
+                    <td>Sadguru nivas plot no 45 Nigdi pune 33</td>
+                    <td>450</td>
+                    <td>400</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <tr>
+                    <td>Akansha Suryanashi</td>
+                    <td>8745982234</td>
+                    <td>Regal heights Dattanagar vimannagar Lohegaon</td>
+                    <td>100</td>
+                    <td>280</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <!-- Additional rows -->
+                <tr>
+                    <td>Soham Arvikar </td>
+                    <td>9987451234</td>
+                    <td>Prakash Park sr no. 23 Dalavinagar pune 33</td>
+                    <td>345</td>
+                    <td>180</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <tr>
+                    <td>Aditya Pawar</td>
+                    <td>9876543210</td>
+                    <td>Royal Heights flat no 34 Premlok park pune 33</td>
+                    <td>780</td>
+                    <td>1000</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <tr>
+                    <td>Rupali Bhalerao </td>
+                    <td>9867431288</td>
+                    <td>15-premlok park flat no 110 Akurdi link road pune 33</td>
+                    <td>250</td>
+                    <td>500</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <tr>
+                    <td>Swaraj Barne  </td>
+                    <td>9876543213</td>
+                    <td>Swami Nivas plot no 12 Rahatani 13</td>
+                    <td>345</td>
+                    <td>1000</td>
+                    <td><button class="btn btn-primary">Edit</button></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                    <td><button class="btn btn-info send-alert-btn">Send Alert</button></td>
+                </tr>
+                <!-- Additional rows -->
+                <!-- Add additional rows here -->
+            </tbody>
+        </table>
+        <a href="#" onclick="goBack()" class="btn btn-secondary">Back</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <span>© 2024 Grocery Store. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // Get all send alert buttons
+        const sendAlertBtns = document.querySelectorAll('.send-alert-btn');
+        
+        // Attach click event listener to each button
+        sendAlertBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Send alert
+                alert('Alert sent successfully.');
+
+                // Wait for 2 seconds and display a message
+                setTimeout(function() {
+                    alert('Notification received: Alert sent successfully.');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
